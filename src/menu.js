@@ -30,5 +30,5 @@ export class ContextMenu extends Menu {
 			this.close()
 		}
 		);
-	}
+	};
 }
