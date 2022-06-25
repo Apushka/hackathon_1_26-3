@@ -7,6 +7,9 @@ export class ClicksModule extends Module {
 
     trigger() {
         const viewTimer = document.createElement('div');
+        viewTimer.style.color = 'white';
+        viewTimer.style.marginTop = '60px';
+        viewTimer.style.textShadow = '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black';
         const messageTimer = document.createElement('h1');
         const timerInHtml = document.createElement('p');
         const square = document.createElement('div');
@@ -18,6 +21,7 @@ export class ClicksModule extends Module {
 		square.style.height = '200px';
 		square.style.top = '300px';
 		square.style.left = '600px';
+        square.style.margin = '0 auto';
 		square.style.background = 'linear-gradient(90deg, #342326,#580413,#540021,#580413,#342326)';
 		square.style.color = 'white';
 		square.style.cursor = 'pointer';
