@@ -12,6 +12,7 @@ import crash from '../assets/drums/sounds/crash.mp3';
 import { random } from '../utils';
 
 export class StageModule extends Module {
+    
     trigger() {
         const container = document.createElement('div');
         container.style.position = 'relative';
