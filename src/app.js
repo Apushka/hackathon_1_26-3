@@ -2,10 +2,6 @@ import './styles.css'
 
 import {BackgroundModule} from './modules/background.module';
 
-console.log('__work__');
 
-const backgroundChange = new BackgroundModule();
+const backgroundChange = new BackgroundModule('background', 'Изменить цвет');
 backgroundChange.trigger();
-console.log(backgroundChange);
-// createFunc();
-
