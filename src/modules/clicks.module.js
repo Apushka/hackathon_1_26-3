@@ -1,4 +1,5 @@
 import {Module} from '../core/module'
+import {ContextMenu} from '../core/menu'
 
 export class ClicksModule extends Module {
     constructor(type, text) {
@@ -20,13 +21,13 @@ export class ClicksModule extends Module {
 		square.style.justifyContent = 'center';
 		square.style.alignItems = 'center';
 		square.style.textAlign = 'center';
-		square.style.fontSize = '18px';
 		square.style.transition = 'opacity 0.7s ease 0s';
 
         document.body.append(square);
         let count = 0;
 
         function clickCounter() {
+            square.style.fontSize = '80px';
             square.textContent = count += 1;
         }
 
@@ -34,11 +35,12 @@ export class ClicksModule extends Module {
         
         setTimeout(() => {
             document.body.removeEventListener('click', clickCounter);
+            square.style.fontSize = '18px';
             square.textContent = `Вы кликнули ${count} раз`;
-        }, 5000);
-    }
-    
-    toHTML() {
-        return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
+        }, 3000);
+
+        setTimeout(() => {
+			square.remove();
+		}, 5000);
     }
 }
