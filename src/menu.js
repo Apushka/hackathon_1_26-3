@@ -1,22 +1,18 @@
 import { Menu } from './core/menu';
-//import { PlugOne } from './modules/plugOne';
-//import { PlugTwo } from './modules/plugTwo';
 
 export class ContextMenu extends Menu {
 	constructor(selector) {
 		super(selector);
-		//this.plugOne = new PlugOne('plugOne', 'Название модуля 1');
-		//this.plugTwo = new PlugTwo('plugTwo', 'Название модуля 2');
-	};
-
-	open() {
 		document.body.addEventListener('contextmenu', event => {
 			event.preventDefault();
+			this.open(event);
+		});
+	};
 
-			this.el.classList.add('open');
-			this.el.style.left = event.clientX + 'px';
-			this.el.style.top = event.clientY + 'px';
-		})
+	open(event) {
+		this.el.classList.add('open');
+		this.el.style.left = event.clientX + 'px';
+		this.el.style.top = event.clientY + 'px';
 	};
 
 	close() {
@@ -24,8 +20,15 @@ export class ContextMenu extends Menu {
 	};
 
 	add(newModule) {
-		this.el.innerHTML += newModule.toHTML();
-		const plugOneButton = this.el.querySelector(`[data-type="${newModule.type}"]`);
-		plugOneButton.addEventListener('click', newModule.trigger);
+		this.el.insertAdjacentHTML(
+			"beforeend",
+			newModule.toHTML()
+		)
+		const moduleButton = this.el.querySelector(`[data-type="${newModule.type}"]`);
+		moduleButton.addEventListener('click', () => {
+			newModule.trigger()
+			this.close()
+		}
+		);
 	}
 }
