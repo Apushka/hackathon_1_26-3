@@ -1,40 +1,35 @@
 import {Module} from '../core/module'
 
 export class ClicksModule extends Module {
-    constructor(type, text) {
-        super(type, text);
-    }
 
     trigger() {
         const viewTimer = document.createElement('div');
+        viewTimer.style.height = '100px';
         viewTimer.style.color = 'white';
         viewTimer.style.marginTop = '60px';
         viewTimer.style.textShadow = '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black';
+        viewTimer.style.textAlign = 'center';
+
         const messageTimer = document.createElement('h1');
         const timerInHtml = document.createElement('p');
-        const square = document.createElement('div');
-        viewTimer.style.textAlign = 'center';
         timerInHtml.style.fontSize = '40px';
-        square.style.position = 'fixed';
+
+        const square = document.createElement('div');
 		square.style.zIndex = '20';
 		square.style.width = '200px';
 		square.style.height = '200px';
-		square.style.top = '300px';
-		square.style.left = '600px';
         square.style.margin = '0 auto';
 		square.style.background = 'linear-gradient(90deg, #342326,#580413,#540021,#580413,#342326)';
 		square.style.color = 'white';
-		square.style.cursor = 'pointer';
 		square.style.display = 'flex';
 		square.style.justifyContent = 'center';
 		square.style.alignItems = 'center';
 		square.style.textAlign = 'center';
 		square.style.transition = 'opacity 0.7s ease 0s';
 
-        document.body.append(square);
         viewTimer.append(messageTimer);
         viewTimer.append(timerInHtml);
-        document.body.append(viewTimer);
+        document.body.append(viewTimer, square);
 
         let timer;
         let startTimerCounter = 3;
@@ -72,6 +67,14 @@ export class ClicksModule extends Module {
 
         setTimeout(() => {
 			square.remove();
+            viewTimer.remove();
+            document.body.removeEventListener('contextmenu', handleContext, true);
 		}, 8000);
+
+        function handleContext(e) {
+            e.stopPropagation();
+        }
+
+        document.body.addEventListener('contextmenu', handleContext, true);
     }
 }
