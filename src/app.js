@@ -4,6 +4,9 @@ import { ClicksModule } from './modules/clicks.module';
 import { StageModule } from './modules/stage.module';
 import { BackgroundModule } from './modules/background.module';
 import { DoubleGame } from './modules/double.module';
+import { mainPageRender } from './modules/main-page';
+
+mainPageRender()
 
 const contextMenu = new ContextMenu('.menu');
 contextMenu.add(new ClicksModule('clicks', 'Анализ кликов'));
