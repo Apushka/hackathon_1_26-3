@@ -1,50 +1,35 @@
-import { Module } from '../core/module'
-import { random } from '../utils'
+import { Module } from '../core/module';
+import { random } from '../utils';
 
 export class ShapeModule extends Module {
   constructor(type, text) {
     super(type, text);
-    this.shapeHTML = document.createElement('div');
-    this.shapeHTML.id = 'shaper';
-    this.shapeHTML.style.position = 'absolute';
-
-    this.randomFormSize = [
-      'width',
-      'height',
-      'borderTopLeftRadius',
-      'borderTopRightRadius',
-      'borderBottomLeftRadius',
-      'borderBottomRightRadius'
-    ];
-      // this.randomColor = `rgb(${[0, 0, 0].map(c => String(random(0, 255))).join(',')})`;
   }
 
   trigger() {
-    this.randomColor = `rgb(${[0, 0, 0].map(c => String(random(0, 255))).join(',')})`;
-    this.shapeHTML.style.background = this.randomColor;
-    this.shapeHTML.style.zIndex = '-1';
-    this.randomFormSize.forEach((shapeSlyle) => {
-      this.shapeHTML.style[shapeSlyle] = `${random(0, 100)}%`;
-    });
+    const shapeHTML = document.createElement('div');
 
-    let formWidth = this.shapeHTML.style.width;
-    let formHeight = this.shapeHTML.style.height;
-    formWidth = +formWidth.substr(0, formWidth.length - 1);
-    formHeight = +formHeight.substr(0, formHeight.length - 1);
-    while (true) {
-      const topCord = random(0, 100);
-      const leftCord = random(0, 100);
+    shapeHTML.style.position = 'absolute';
+    shapeHTML.style.width = `${random(5, 30)}%`;
+    shapeHTML.style.height = `${random(5, 30)}%`;
 
-      if ((formWidth + leftCord) <= 100 && (formHeight + topCord) <= 100) {
-        this.shapeHTML.style.top = `${String(topCord)}%`;
-        this.shapeHTML.style.left = `${String(leftCord)}%`;
-        break;
-      }
-    }
+    shapeHTML.style.background = `rgb(${[0, 0, 0].map(c => String(random(0, 254))).join(',')})`;
 
-    document.body.append(this.shapeHTML);
-    // setTimeout(() => {
-    //   document.querySelector('#shaper')?.remove();
-    // }, 4000);
-  }
+    const borderRad = [
+      'borderTopLeftRadius', 
+      'borderTopRightRadius', 
+      'borderBottomLeftRadius',
+      'borderBottomRightRadius'
+    ];
+
+    borderRad.forEach(br => shapeHTML.style[br] = `${random(0, 200)}%`);
+
+    shapeHTML.style.top = `${random(0, 70)}%`;
+    shapeHTML.style.left = `${random(0, 70)}%`;
+
+    document.body.append(shapeHTML);
+    setTimeout(() => {
+      shapeHTML.remove();
+    }, 10000);
+  }  
 }
