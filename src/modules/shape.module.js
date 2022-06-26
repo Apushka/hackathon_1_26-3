@@ -31,5 +31,5 @@ export class ShapeModule extends Module {
     setTimeout(() => {
       shapeHTML.remove();
     }, 10000);
-  }
+  }  
 }
