@@ -71,7 +71,8 @@ export function unblockContext() {
 }
 
 function handleContext(e) {
-	e.stopPropagation()
+	e.preventDefault();
+	e.stopPropagation();
 }
 
 export function closeGame() {
