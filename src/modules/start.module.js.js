@@ -4,7 +4,7 @@ import { Clicks } from "./clicks.module";
 import { Coin } from "./coin.module";
 import { DoubleGame } from "./double.module";
 import { RandomMessage } from "./message.module";
-import { ShapeModule } from "./shape.module";
+import { Shape } from "./shape.module";
 import { RandomSound } from "./sound.module";
 import { Stage } from "./stage.module";
 
@@ -31,7 +31,7 @@ export class App {
 		contextMenu.add(new DoubleGame('doublegame', 'Игра "Найди пару"'));
 		contextMenu.add(new Coin('coin', 'Орёл или Решка'));
 		contextMenu.add(new RandomMessage('message', 'Получить сообщение'));
-		contextMenu.add(new ShapeModule('shape', 'Создать фигуру'));
+		contextMenu.add(new Shape('shape', 'Создать фигуру'));
 		contextMenu.add(new RandomSound('sound', 'Рандомный звук'));
 	}
 }
