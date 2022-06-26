@@ -7,6 +7,7 @@ import { RandomMessage } from "./message.module";
 import { Shape } from "./shape.module";
 import { RandomSound } from "./sound.module";
 import { Stage } from "./stage.module";
+import { Timer } from "./timer.module";
 
 export class App {
 	#mainpage;
@@ -25,13 +26,14 @@ export class App {
 
 	start() {
 		const contextMenu = new ContextMenu('.menu');
-		contextMenu.add(new Clicks('clicks', 'Клик на скорость'));
+		contextMenu.add(new Clicks('clicks', 'Скоростной клик'));
+		contextMenu.add(new RandomSound('sound', 'Случайный звук'));
+		contextMenu.add(new Coin('coin', 'Орёл или Решка'));
+		contextMenu.add(new Shape('shape', 'Создать фигуру'));
 		contextMenu.add(new Stage('stage', 'Время поиграть'));
 		contextMenu.add(new Background('background', 'Изменить цвет'));
-		contextMenu.add(new DoubleGame('doublegame', 'Игра "Найди пару"'));
-		contextMenu.add(new Coin('coin', 'Орёл или Решка'));
-		contextMenu.add(new RandomMessage('message', 'Получить сообщение'));
-		contextMenu.add(new Shape('shape', 'Создать фигуру'));
-		contextMenu.add(new RandomSound('sound', 'Рандомный звук'));
+		contextMenu.add(new RandomMessage('message', 'Вам сообщение'));
+		contextMenu.add(new DoubleGame('doublegame', 'Найди пару'));
+		contextMenu.add(new Timer('timer', 'Таймер'));
 	}
 }

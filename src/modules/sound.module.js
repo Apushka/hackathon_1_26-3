@@ -15,14 +15,6 @@ export class RandomSound extends Module {
         speakerRight.src = speakerImg;
         speakerRight.classList.add('speaker', 'speaker-right');
 
-
-        // speakerLeft.style.width = '300px';
-        // speakerLeft.style.position = 'absolute';
-        // speakerLeft.style.top = '20%';
-        // speakerLeft.style.left = '-100%';
-
-        // speakerLeft.style.transform = 'scaleX(-1)';
-        // speakerLeft.style.transition = 'all ease 0.5s';
         document.body.append(speakerLeft, speakerRight);
         setTimeout(() => {
             const sound = new Audio(getRandomSound());
