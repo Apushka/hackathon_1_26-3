@@ -2,6 +2,17 @@ export function random(min, max) {
 	return Math.round(min - 0.5 + Math.random() * (max - min + 1))
 };
 
+export function getRandomColor(min, max) {
+	const letters = "0123456789ABCDEF";
+	let color = "#";
+
+	for (let i = 0; i < 6; i++) {
+		color += letters[random(min, max)];
+	}
+
+	return color;
+}
+
 const images = [
 	'https://i.yapx.ru/SiACQ.jpg',
 	'https://i.yapx.ru/SiACZ.jpg',
@@ -23,7 +34,7 @@ const images = [
 
 const orders = [4, 1, 7, 2, 8, 3, 2, 6, 5, 8, 1, 3, 5, 4, 6, 7];
 
-export const createArea = () => {
+export function createArea() {
 	const outer = document.createElement('div');
 	outer.className = 'doublegame-outer';
 
@@ -52,26 +63,26 @@ export const createArea = () => {
 	return outer;
 }
 
-export const handleContext = e => {
+export function handleContext(e) {
 	e.stopPropagation()
 }
 
-export const closeGame = () => {
+export function closeGame() {
 	document.querySelector('.doublegame-outer').remove();
 	document.body.removeEventListener('contextmenu', handleContext, true);
 }
 
-export const createCover = () => {
+export function createCover() {
 	const cover = document.createElement('div');
 	cover.className = 'doublegame-cover';
 	return cover;
 }
 
-export const congratulation = outer => {
+export function congratulation(outer) {
 	const items = document.querySelectorAll('.doublegame-item');
 	items.forEach(item => item.remove());
 	const congratulationHTML = document.createElement('div');
 	congratulationHTML.className = 'doublegame-congratulation';
 	congratulationHTML.textContent = 'Поздравляю с победой!!!'
-	outer.prepend(congratulationHTML)
+	outer.prepend(congratulationHTML);
 }

@@ -1,5 +1,6 @@
 import { Module } from '../core/module';
-import img from '../assets/drums/drums.jpg';
+import { createStage, handleContext, random } from '../utils';
+import drumsImage from '../assets/drums/drums.jpg';
 import closeImg from '../assets/drums/close.png';
 import snare from '../assets/drums/sounds/snare.mp3';
 import kick from '../assets/drums/sounds/kick.mp3';
@@ -9,52 +10,35 @@ import tom3 from '../assets/drums/sounds/tom3.mp3';
 import hhat from '../assets/drums/sounds/hhat.mp3';
 import ride from '../assets/drums/sounds/ride.mp3';
 import crash from '../assets/drums/sounds/crash.mp3';
-import { random } from '../utils';
 
 export class StageModule extends Module {
-    
+
     trigger() {
         const container = document.createElement('div');
-        container.style.position = 'relative';
-        container.style.width = '100%';
-        container.style.height = '100vh';
-        container.style.background = 'rgba(0, 0, 0, 0.5)';
-        container.style.display = 'flex';
-        container.style.justifyContent = 'center';
-        container.style.alignItems = 'center';
+        container.className = 'stage';
 
         const drumsImg = document.createElement('img');
-        drumsImg.display = 'block';
-        drumsImg.style.width = '40%';
-        drumsImg.src = img;
-        drumsImg.style.position = 'relative';
-        drumsImg.style.borderRadius = '50px';
+        drumsImg.src = drumsImage;
+        drumsImg.className = 'drumset';
 
         container.append(drumsImg);
 
         const closeButton = document.createElement('img');
         closeButton.src = closeImg;
-        closeButton.style.width = '40px';
-        closeButton.style.height = '40px';
-        closeButton.style.position = 'absolute';
-        closeButton.style.top = '15px';
-        closeButton.style.right = '15px';
+        closeButton.className = 'close';
 
         container.append(closeButton);
-
+        // const stage = createStage();
         document.body.append(container);
-        drumsImg.style.zIndex = '100';
 
         function highlightKey(message) {
             const highlight = document.createElement('div');
             highlight.textContent = message;
-            highlight.style.position = 'absolute';
+            highlight.className = 'actions';
             highlight.style.fontSize = random(12, 48) + 'px';
             highlight.style.top = random(0, 20) + '%';
             highlight.style.left = random(0, 90) + '%';
-            highlight.style.zIndex = '150';
-            highlight.style.color = '#ebebeb';
-            highlight.style.textShadow = '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black';
+
             container.append(highlight);
 
             setTimeout(() => {
@@ -68,10 +52,6 @@ export class StageModule extends Module {
 
         function onMouseOut() {
             closeButton.style.filter = 'none';
-        }
-
-        function stopPropagation(e) {
-            e.stopPropagation();
         }
 
         function handleKeyPress(e) {
@@ -123,14 +103,13 @@ export class StageModule extends Module {
         closeButton.addEventListener('click', () => {
             closeButton.removeEventListener('click', onMouseOver);
             closeButton.removeEventListener('click', onMouseOut)
-            container.removeEventListener('contextmenu', stopPropagation);
             document.body.removeEventListener('keypress', handleKeyPress);
             container.remove()
         }, {
             once: true
         })
 
-        container.addEventListener('contextmenu', stopPropagation);
+        container.addEventListener('contextmenu', handleContext);
 
         document.body.addEventListener('keypress', handleKeyPress);
     }
