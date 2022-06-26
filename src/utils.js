@@ -68,7 +68,7 @@ export function unblockContext() {
 }
 
 function handleContext(e) {
-	e.preventDefault();
+	// e.preventDefault();
 	e.stopPropagation();
 }
 

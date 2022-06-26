@@ -12,7 +12,10 @@ export class ContextMenu extends Menu {
 
 	open(event) {
 		this.el.classList.add('open');
-		getMenuPosition(this.el, event);
+		this.el.style.left = event.clientX + 'px';
+		this.el.style.top = event.clientY + 'px';
+
+		// getMenuPosition(this.el, event);
 	};
 
 	close() {
