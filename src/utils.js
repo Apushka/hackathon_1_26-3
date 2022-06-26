@@ -15,6 +15,7 @@ export function getRandomColor(min, max) {
 	return color;
 }
 
+// Вычисление позиции меню без заваливания за экран. Не работает на Windows, работает на Mac
 export function getMenuPosition(element, event) {
 	const menuHeight = Number(window.getComputedStyle(element).height.replaceAll(/\D/g, ''));
 	const menuWidth = Number(window.getComputedStyle(element).width.replaceAll(/\D/g, ''));

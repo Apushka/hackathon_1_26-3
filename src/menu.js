@@ -12,7 +12,13 @@ export class ContextMenu extends Menu {
 
 	open(event) {
 		this.el.classList.add('open');
-		getMenuPosition(this.el, event);
+		if (navigator.appVersion.indexOf("Win") != -1) {
+			this.el.style.top = event.clientY + 'px';
+			this.el.style.left = event.clientX + 'px';
+		} else {
+			// Вычисление позиции меню без заваливания за экран. Не работает на Windows, работает на Mac
+			getMenuPosition(this.el, event);
+		}
 	};
 
 	close() {
