@@ -24,20 +24,8 @@ export class ShapeModule extends Module {
 
     borderRad.forEach(br => shapeHTML.style[br] = `${random(0, 200)}%`);
 
-    const shapeWidth = shapeHTML.style.width;
-    const shapeHeight = shapeHTML.style.height;
-    let shapeWidthPer = Number(shapeWidth.substr(0, shapeWidth.length - 1));
-    let shapeHeightPer = Number(shapeHeight.substr(0, shapeHeight.length - 1));
-    while (true) {
-      const shapeTop = random(0, 100);
-      const shapeLeft = random(0, 100);
-
-      if ((shapeTop + shapeHeightPer) <= 100 && (shapeLeft + shapeWidthPer) <= 100) {
-        shapeHTML.style.top = `${String(shapeTop)}%`;
-        shapeHTML.style.left = `${String(shapeLeft)}%`;
-        break;
-      }
-    }
+    shapeHTML.style.top = `${random(0, 70)}%`;
+    shapeHTML.style.left = `${random(0, 70)}%`;
 
     document.body.append(shapeHTML);
     setTimeout(() => {
