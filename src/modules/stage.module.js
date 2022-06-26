@@ -1,5 +1,6 @@
 import { Module } from '../core/module';
-import img from '../assets/drums/drums.jpg';
+import { handleContext, random } from '../utils';
+import drumsImage from '../assets/drums/drums.jpg';
 import closeImg from '../assets/drums/close.png';
 import snare from '../assets/drums/sounds/snare.mp3';
 import kick from '../assets/drums/sounds/kick.mp3';
@@ -9,7 +10,6 @@ import tom3 from '../assets/drums/sounds/tom3.mp3';
 import hhat from '../assets/drums/sounds/hhat.mp3';
 import ride from '../assets/drums/sounds/ride.mp3';
 import crash from '../assets/drums/sounds/crash.mp3';
-import { random } from '../utils';
 
 export class StageModule extends Module {
 
@@ -26,9 +26,10 @@ export class StageModule extends Module {
         const drumsImg = document.createElement('img');
         drumsImg.display = 'block';
         drumsImg.style.width = '40%';
-        drumsImg.src = img;
+        drumsImg.src = drumsImage;
         drumsImg.style.position = 'relative';
         drumsImg.style.borderRadius = '50px';
+        drumsImg.style.zIndex = '100';
 
         container.append(drumsImg);
 
@@ -43,7 +44,6 @@ export class StageModule extends Module {
         container.append(closeButton);
 
         document.body.append(container);
-        drumsImg.style.zIndex = '100';
 
         function highlightKey(message) {
             const highlight = document.createElement('div');
@@ -68,10 +68,6 @@ export class StageModule extends Module {
 
         function onMouseOut() {
             closeButton.style.filter = 'none';
-        }
-
-        function stopPropagation(e) {
-            e.stopPropagation();
         }
 
         function handleKeyPress(e) {
@@ -123,14 +119,13 @@ export class StageModule extends Module {
         closeButton.addEventListener('click', () => {
             closeButton.removeEventListener('click', onMouseOver);
             closeButton.removeEventListener('click', onMouseOut)
-            container.removeEventListener('contextmenu', stopPropagation);
             document.body.removeEventListener('keypress', handleKeyPress);
             container.remove()
         }, {
             once: true
         })
 
-        container.addEventListener('contextmenu', stopPropagation);
+        container.addEventListener('contextmenu', handleContext);
 
         document.body.addEventListener('keypress', handleKeyPress);
     }

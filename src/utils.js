@@ -2,7 +2,6 @@ export function random(min, max) {
 	return Math.round(min - 0.5 + Math.random() * (max - min + 1))
 };
 
-<<<<<<< HEAD
 export function getRandomColor(min, max) {
 	const letters = "0123456789ABCDEF";
 	let color = "#";
@@ -12,7 +11,8 @@ export function getRandomColor(min, max) {
 	}
 	
 	return color;
-=======
+}
+
 const images = [
 	'https://i.yapx.ru/SiACQ.jpg',
 	'https://i.yapx.ru/SiACZ.jpg',
@@ -84,6 +84,5 @@ export const congratulation = outer => {
 	const congratulationHTML = document.createElement('div');
 	congratulationHTML.className = 'doublegame-congratulation';
 	congratulationHTML.textContent = 'Поздравляю с победой!!!'
-	outer.prepend(congratulationHTML)
->>>>>>> c508aea0564a072973338eba3a8a2a58bd994115
+	outer.prepend(congratulationHTML);
 }
