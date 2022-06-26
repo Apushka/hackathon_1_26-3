@@ -1,47 +1,47 @@
-import {Module} from '../core/module';
-import {random} from '../utils';
+import { Module } from '../core/module';
+import { random } from '../utils';
 
 export class ShapeModule extends Module {
-  constructor() {
-    this.shapeHTML = document.createElement('div'),
-    this.shapeHTML.id = 'shaper',
-    this.shapeHTML.style.position = 'absolute',
-
-    this.randomFormSize = [
-      'width',
-      'height',
-      'borderTopLeftRadius',
-      'borderTopRightRadius',
-      'borderBottomLeftRadius',
-      'borderBottomRightRadius'
-    ],
-    this.randomColor = `rgb(${[0, 0, 0].map(c => String(random(0, 255))).join(',')})`
+  constructor(type, text) {
+    super(type, text);
   }
 
-  render() {
-    this.shapeHTML.style.background = this.randomColor;
-    this.randomFormSize.forEach((shapeSlyle) => {
-      this.shapeHTML.style[shapeSlyle] = `${random(0, 100)}%`
-    });
+  trigger() {
+    const shapeHTML = document.createElement('div');
 
-    let formWidth = this.shapeHTML.style.width;
-    let formHeight = this.shapeHTML.style.height;
-    formWidth = +formWidth.substr(0, formWidth.length - 1);
-    formHeight = +formHeight.substr(0, formHeight.length - 1);
-    while(true) {
-      const topCord = random(0, 100);
-      const leftCord = random(0, 100);
+    shapeHTML.style.position = 'absolute';
+    shapeHTML.style.width = `${random(5, 30)}%`;
+    shapeHTML.style.height = `${random(5, 30)}%`;
 
-      if ((formWidth + leftCord) <= 100 && (formHeight + topCord) <= 100) {
-        this.shapeHTML.style.top = `${String(topCord)}%`;
-        this.shapeHTML.style.left = `${String(leftCord)}%`;
+    shapeHTML.style.background = `rgb(${[0, 0, 0].map(c => String(random(0, 254))).join(',')})`;
+
+    const borderRad = [
+      'borderTopLeftRadius', 
+      'borderTopRightRadius', 
+      'borderBottomLeftRadius',
+      'borderBottomRightRadius'
+    ];
+
+    borderRad.forEach(br => shapeHTML.style[br] = `${random(0, 200)}%`);
+
+    const shapeWidth = shapeHTML.style.width;
+    const shapeHeight = shapeHTML.style.height;
+    let shapeWidthPer = Number(shapeWidth.substr(0, shapeWidth.length - 1));
+    let shapeHeightPer = Number(shapeHeight.substr(0, shapeHeight.length - 1));
+    while (true) {
+      const shapeTop = random(0, 100);
+      const shapeLeft = random(0, 100);
+
+      if ((shapeTop + shapeHeightPer) <= 100 && (shapeLeft + shapeWidthPer) <= 100) {
+        shapeHTML.style.top = `${String(shapeTop)}%`;
+        shapeHTML.style.left = `${String(shapeLeft)}%`;
         break;
       }
     }
 
-    document.body.append(this.shapeHTML);
+    document.body.append(shapeHTML);
     setTimeout(() => {
-      document.querySelector('#shaper').remove();
-    }, 4000);
+      shapeHTML.remove();
+    }, 10000);
   }
 }
