@@ -6,6 +6,7 @@ import { BackgroundModule } from './modules/background.module';
 import { DoubleGame } from './modules/double.module';
 import { CoinModule } from './modules/coin.module';
 import { RandomMessage } from './modules/message.module';
+import { ShapeModule } from './modules/shape.module';
 
 const contextMenu = new ContextMenu('.menu');
 contextMenu.add(new ClicksModule('clicks', 'Анализ кликов'));
@@ -14,3 +15,4 @@ contextMenu.add(new BackgroundModule('background', 'Изменить цвет'))
 contextMenu.add(new DoubleGame('doublegame', 'Игра "Найди пару"'));
 contextMenu.add(new CoinModule('coin', 'Орёл или Решка'));
 contextMenu.add(new RandomMessage('message', 'Получить сообщение'));
+contextMenu.add(new ShapeModule('shape', 'Создать фигуру'));
