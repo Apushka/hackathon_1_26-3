@@ -1,26 +1,16 @@
 import {Module} from '../core/module'
-import {random} from '../utils'
+import {handleContext, random} from '../utils'
 
 export class CoinModule extends Module {
-    constructor(type, text) {
-        super(type, text);
-    }
 
     trigger() {
         const coinContainer = document.createElement('div');
         const coinText = document.createElement('div');
+        coinText.className = 'coin-text';
+
         const gifCoin = document.createElement('img');
         gifCoin.src = './src/assets/coin/coin.gif';
-        gifCoin.style.display = 'block';
-        gifCoin.style.margin = '200px auto';
-        gifCoin.style.width = '600px';
-        gifCoin.style.borderRadius = '15px';
-        coinText.style.display = 'flex';
-        coinText.style.color = 'white';
-        coinText.style.textShadow = '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black';
-        coinText.style.justifyContent = 'center';
-        coinText.style.marginTop = '300px';
-		coinText.style.fontSize = '50px';
+        gifCoin.className = 'gif-coin'
 
         coinContainer.append(gifCoin);
         document.body.append(coinContainer);
@@ -37,7 +27,10 @@ export class CoinModule extends Module {
         }, 3300);
 
         setTimeout(() => {
+            document.body.removeEventListener('contextmenu', handleContext, true);
             coinContainer.remove();
         }, 5000);
+
+        document.body.addEventListener('contextmenu', handleContext, true);
     }
 }

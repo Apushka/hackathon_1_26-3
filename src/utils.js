@@ -1,3 +1,6 @@
+import drumsImage from './assets/drums/drums.jpg';
+import closeImg from './assets/drums/close.png';
+
 export function random(min, max) {
 	return Math.round(min - 0.5 + Math.random() * (max - min + 1))
 };
@@ -9,7 +12,7 @@ export function getRandomColor(min, max) {
 	for (let i = 0; i < 6; i++) {
 		color += letters[random(min, max)];
 	}
-	
+
 	return color;
 }
 
@@ -34,7 +37,7 @@ const images = [
 
 const orders = [4, 1, 7, 2, 8, 3, 2, 6, 5, 8, 1, 3, 5, 4, 6, 7];
 
-export const createArea = () => {
+export function createArea() {
 	const outer = document.createElement('div');
 	outer.className = 'doublegame-outer';
 
@@ -63,22 +66,22 @@ export const createArea = () => {
 	return outer;
 }
 
-export const handleContext = e => {
+export function handleContext() {
 	e.stopPropagation()
 }
 
-export const closeGame = () => {
+export function closeGame() {
 	document.querySelector('.doublegame-outer').remove();
 	document.body.removeEventListener('contextmenu', handleContext, true);
 }
 
-export const createCover = () => {
+export function createCover() {
 	const cover = document.createElement('div');
 	cover.className = 'doublegame-cover';
 	return cover;
 }
 
-export const congratulation = outer => {
+export function congratulation(outer) {
 	const items = document.querySelectorAll('.doublegame-item');
 	items.forEach(item => item.remove());
 	const congratulationHTML = document.createElement('div');
