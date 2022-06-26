@@ -16,6 +16,21 @@ export function getRandomColor(min, max) {
 	return color;
 }
 
+export function getMenuPosition(element, event) {
+	const menuHeight = Number(window.getComputedStyle(element).height.replaceAll(/\D/g, ''));
+	const menuWidth = Number(window.getComputedStyle(element).width.replaceAll(/\D/g, ''));
+	const clientY = event.clientY;
+	const clientX = event.clientX;
+
+	element.style.left = clientX + menuWidth > window.innerWidth
+		? window.innerWidth - menuWidth + 'px'
+		: clientX + 'px';
+
+	element.style.top = clientY + menuHeight > window.innerHeight
+		? window.innerHeight - menuHeight + 'px'
+		: clientY + 'px';
+}
+
 const orders = [4, 1, 7, 2, 8, 3, 2, 6, 5, 8, 1, 3, 5, 4, 6, 7];
 
 export function createArea() {
@@ -83,4 +98,3 @@ export function getRandomSound() {
 	const soundUrl = sounds[random(0, sounds.length - 1)];
 	return soundUrl;
 }
-

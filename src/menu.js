@@ -1,4 +1,5 @@
 import { Menu } from './core/menu';
+import { getMenuPosition } from './utils';
 
 export class ContextMenu extends Menu {
 	constructor(selector) {
@@ -11,8 +12,11 @@ export class ContextMenu extends Menu {
 
 	open(event) {
 		this.el.classList.add('open');
-		this.el.style.left = event.clientX + 'px';
-		this.el.style.top = event.clientY + 'px';
+		getMenuPosition(this.el, event);
+		// const { x, y } = calculatePosition(this.el, event);
+
+		// this.el.style.left = x;
+		// this.el.style.top = y;
 	};
 
 	close() {
