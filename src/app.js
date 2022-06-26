@@ -11,4 +11,4 @@ contextMenu.add(new ClicksModule('clicks', 'Анализ кликов'));
 contextMenu.add(new StageModule('stage', 'Время поиграть'));
 contextMenu.add(new BackgroundModule('background', 'Изменить цвет'));
 contextMenu.add(new DoubleGame('doublegame', 'Игра "Найди пару"'));
-contextMenu.add(CoinModule('coin', 'Орёл или Решка'));
+contextMenu.add(new CoinModule('coin', 'Орёл или Решка'));
