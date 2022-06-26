@@ -1,10 +1,13 @@
 import {Module} from '../core/module'
-import {handleContext, random} from '../utils'
+import {blockContext, handleContext, random, unblockContext} from '../utils'
 
-export class CoinModule extends Module {
+export class Coin extends Module {
 
     trigger() {
+        blockContext();
+
         const coinContainer = document.createElement('div');
+        coinContainer.className = 'coin-container';
         const coinText = document.createElement('div');
         coinText.className = 'coin-text';
 
@@ -27,10 +30,9 @@ export class CoinModule extends Module {
         }, 3300);
 
         setTimeout(() => {
-            document.body.removeEventListener('contextmenu', handleContext, true);
+            unblockContext();
             coinContainer.remove();
         }, 5000);
 
-        document.body.addEventListener('contextmenu', handleContext, true);
     }
 }

@@ -1,10 +1,10 @@
 import { Module } from '../core/module';
-import { createArea, closeGame, createCover, congratulation, handleContext } from "../utils";
+import { createArea, closeGame, createCover, congratulation, blockContext } from "../utils";
 
 export class DoubleGame extends Module {
 
 	trigger() {
-		document.body.addEventListener('contextmenu', handleContext, true);
+		blockContext();
 
 		let gameSwitch = true;
 		let savedCardNumber = 0;

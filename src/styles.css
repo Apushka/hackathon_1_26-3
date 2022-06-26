@@ -17,15 +17,31 @@ body {
 	width: 100%;
 }
 
+/* start screen styles */
+.main-page {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	color: white;
+	background: linear-gradient(90deg, #41a8bf, #a044c1, #6f1fbf);
+	display: flex;
+	z-index: -5;
+	align-items: center;
+	justify-content: center;
+	font-size: 50px;
+	text-align: center;
+	text-shadow: var(--text-shadow);
+}
+
 /* context-menu styles*/
 .menu {
 	position: fixed;
-	z-index: 1000;
 	width: 150px;
 	background: linear-gradient(10deg, #7c3c74, #3ea389, #b9deb9);
 	border-radius: 5px;
 	list-style: none;
-
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity 0.7s ease 0s, visibility 0.7s ease 0s;
@@ -60,7 +76,8 @@ body {
 
 /* double game styles */
 .doublegame-outer {
-	margin: 50px auto;
+	padding-top: 50px;
+	margin: 0 auto;
 	width: 500px;
 	height: 500px;
 	display: flex;
@@ -145,11 +162,19 @@ body {
 }
 
 /* coin styles */
+.coin-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .gif-coin {
 	display: block;
-	margin: 200px auto;
 	width: 600px;
 	border-radius: 15px;
+	z-index: 100;
 }
 
 .coin-text {
@@ -157,16 +182,16 @@ body {
 	color: white;
 	text-shadow: var(--text-shadow);
 	justify-content: center;
-	margin-top: 300px;
 	font-size: 50px;
+	z-index: 100;
 }
 
 /* clicks styles */
 
 .timer {
-	height: 100px;
+	height: 160px;
 	color: white;
-	margin-top: 60px;
+	padding-top: 60px;
 	text-shadow: var(--text-shadow);
 	text-align: center;
 }
@@ -217,4 +242,21 @@ body {
 	z-index: 150;
 	color: #ebebeb;
 	text-shadow: var(--text-shadow);
+}
+
+/* random sound styles */
+.speaker {
+	width: 300px;
+	position: absolute;
+	top: 20%;
+	transition: all ease-in-out 0.3s;
+}
+
+.speaker-left {
+	left: -100%;
+	transform: scaleX(-1);
+}
+
+.speaker-right {
+	right: -100%;
 }

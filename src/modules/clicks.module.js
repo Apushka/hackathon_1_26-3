@@ -1,8 +1,11 @@
 import {Module} from '../core/module'
+import { blockContext, unblockContext } from '../utils';
 
-export class ClicksModule extends Module {
+export class Clicks extends Module {
 
     trigger() {
+        blockContext();
+
         const viewTimer = document.createElement('div');
         viewTimer.classList.add('timer', 'non-selectable');
 
@@ -54,13 +57,7 @@ export class ClicksModule extends Module {
         setTimeout(() => {
 			clicksBlock.remove();
             viewTimer.remove();
-            document.body.removeEventListener('contextmenu', handleContext, true);
+            unblockContext();
 		}, 8000);
-
-        function handleContext(e) {
-            e.stopPropagation();
-        }
-
-        document.body.addEventListener('contextmenu', handleContext, true);
     }
 }

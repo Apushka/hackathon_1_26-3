@@ -1,5 +1,4 @@
-import drumsImage from './assets/drums/drums.jpg';
-import closeImg from './assets/drums/close.png';
+import { images, orders, sounds } from "./data";
 
 export function random(min, max) {
 	return Math.round(min - 0.5 + Math.random() * (max - min + 1))
@@ -16,26 +15,20 @@ export function getRandomColor(min, max) {
 	return color;
 }
 
-const images = [
-	'https://i.yapx.ru/SiACQ.jpg',
-	'https://i.yapx.ru/SiACZ.jpg',
-	'https://i.yapx.ru/SiACT.jpg',
-	'https://i.yapx.ru/SiACL.jpg',
-	'https://i.yapx.ru/SiACX.jpg',
-	'https://i.yapx.ru/SiACJ.jpg',
-	'https://i.yapx.ru/SiACL.jpg',
-	'https://i.yapx.ru/SiACV.jpg',
-	'https://i.yapx.ru/SiACO.jpg',
-	'https://i.yapx.ru/SiACX.jpg',
-	'https://i.yapx.ru/SiACZ.jpg',
-	'https://i.yapx.ru/SiACJ.jpg',
-	'https://i.yapx.ru/SiACO.jpg',
-	'https://i.yapx.ru/SiACQ.jpg',
-	'https://i.yapx.ru/SiACV.jpg',
-	'https://i.yapx.ru/SiACT.jpg',
-]
+export function getMenuPosition(element, event) {
+	const menuHeight = Number(window.getComputedStyle(element).height.replaceAll(/\D/g, ''));
+	const menuWidth = Number(window.getComputedStyle(element).width.replaceAll(/\D/g, ''));
+	const clientY = event.clientY;
+	const clientX = event.clientX;
 
-const orders = [4, 1, 7, 2, 8, 3, 2, 6, 5, 8, 1, 3, 5, 4, 6, 7];
+	element.style.left = clientX + menuWidth > window.innerWidth
+		? window.innerWidth - menuWidth + 'px'
+		: clientX + 'px';
+
+	element.style.top = clientY + menuHeight > window.innerHeight
+		? window.innerHeight - menuHeight + 'px'
+		: clientY + 'px';
+}
 
 export function createArea() {
 	const outer = document.createElement('div');
@@ -66,13 +59,22 @@ export function createArea() {
 	return outer;
 }
 
-export function handleContext() {
-	e.stopPropagation()
+export function blockContext() {
+	document.body.addEventListener('contextmenu', handleContext, true);
+}
+
+export function unblockContext() {
+	document.body.removeEventListener('contextmenu', handleContext, true);
+}
+
+function handleContext(e) {
+	// e.preventDefault();
+	e.stopPropagation();
 }
 
 export function closeGame() {
 	document.querySelector('.doublegame-outer').remove();
-	document.body.removeEventListener('contextmenu', handleContext, true);
+	unblockContext();
 }
 
 export function createCover() {
@@ -88,4 +90,9 @@ export function congratulation(outer) {
 	congratulationHTML.className = 'doublegame-congratulation';
 	congratulationHTML.textContent = 'Поздравляю с победой!!!'
 	outer.prepend(congratulationHTML);
+}
+
+export function getRandomSound() {
+	const soundUrl = sounds[random(0, sounds.length - 1)];
+	return soundUrl;
 }

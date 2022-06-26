@@ -1,5 +1,5 @@
 import { Module } from '../core/module';
-import { createStage, handleContext, random } from '../utils';
+import { blockContext, random, unblockContext } from '../utils';
 import drumsImage from '../assets/drums/drums.jpg';
 import closeImg from '../assets/drums/close.png';
 import snare from '../assets/drums/sounds/snare.mp3';
@@ -11,9 +11,11 @@ import hhat from '../assets/drums/sounds/hhat.mp3';
 import ride from '../assets/drums/sounds/ride.mp3';
 import crash from '../assets/drums/sounds/crash.mp3';
 
-export class StageModule extends Module {
+export class Stage extends Module {
 
     trigger() {
+        blockContext();
+
         const container = document.createElement('div');
         container.className = 'stage';
 
@@ -28,7 +30,6 @@ export class StageModule extends Module {
         closeButton.className = 'close';
 
         container.append(closeButton);
-        // const stage = createStage();
         document.body.append(container);
 
         function highlightKey(message) {
@@ -104,12 +105,11 @@ export class StageModule extends Module {
             closeButton.removeEventListener('click', onMouseOver);
             closeButton.removeEventListener('click', onMouseOut)
             document.body.removeEventListener('keypress', handleKeyPress);
+            unblockContext();
             container.remove()
         }, {
             once: true
         })
-
-        container.addEventListener('contextmenu', handleContext);
 
         document.body.addEventListener('keypress', handleKeyPress);
     }

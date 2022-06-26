@@ -1,48 +1,40 @@
-import { Module } from '../core/module'
-import { random } from '../utils'
+import { Module } from '../core/module';
+import { random } from '../utils';
 
-export class ShapeModule extends Module {
-  constructor(type, text) {
-    super(type, text);
-    this.shapeHTML = document.createElement('div');
-    this.shapeHTML.id = 'shaper';
-    this.shapeHTML.style.position = 'absolute';
+export class Shape extends Module {
 
-    this.randomFormSize = [
-      'width',
-      'height',
+  trigger() {
+    const shapeHTML = document.createElement('div');
+
+    shapeHTML.style.position = 'absolute';
+    shapeHTML.style.zIndex = '-1';
+    shapeHTML.style.width = `${random(5, 30)}%`;
+    shapeHTML.style.height = `${random(5, 30)}%`;
+
+    shapeHTML.style.background = `rgb(${[0, 0, 0].map(c => String(random(0, 254))).join(',')})`;
+
+    const borderRad = [
       'borderTopLeftRadius',
       'borderTopRightRadius',
       'borderBottomLeftRadius',
       'borderBottomRightRadius'
-    ],
-      this.randomColor = `rgb(${[0, 0, 0].map(c => String(random(0, 255))).join(',')})`;
-  }
+    ];
 
-  trigger() {
-    this.shapeHTML.style.background = this.randomColor;
-    this.randomFormSize.forEach((shapeSlyle) => {
-      this.shapeHTML.style[shapeSlyle] = `${random(0, 100)}%`;
-    });
+    borderRad.forEach(br => shapeHTML.style[br] = `${random(0, 200)}%`);
 
-    let formWidth = this.shapeHTML.style.width;
-   let formHeight = this.shapeHTML.style.height;
-    formWidth = +formWidth.substr(0, formWidth.length - 1);
-    formHeight = +formHeight.substr(0, formHeight.length - 1);
-    while (true) {
-      const topCord = random(0, 100);
-      const leftCord = random(0, 100);
+    shapeHTML.style.top = `${random(0, 70)}%`;
+    shapeHTML.style.left = `${random(0, 70)}%`;
 
-      if ((formWidth + leftCord) <= 100 && (formHeight + topCord) <= 100) {
-        this.shapeHTML.style.top = `${String(topCord)}%`;
-        this.shapeHTML.style.left = `${String(leftCord)}%`;
-        break;
+    document.body.append(shapeHTML);
+
+    let shapeOpacity = 1;
+    const disappearance = setInterval(() => {
+      shapeOpacity -= 0.01;
+      shapeHTML.style.opacity = `${shapeOpacity}`;
+      if (shapeOpacity < 0) {
+        clearInterval(disappearance);
+        shapeHTML.remove();
       }
-    }
-
-    document.body.append(this.shapeHTML);
-    // setTimeout(() => {
-    //   document.querySelector('#shaper')?.remove();
-    // }, 4000);
+    }, 100);
   }
 }
