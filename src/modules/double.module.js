@@ -1,6 +1,8 @@
 import { Module } from '../core/module';
 import { createArea, closeGame, createCover, congratulation, blockContext } from "../utils";
 
+// by Евгений Сологуб
+
 export class DoubleGame extends Module {
 
 	trigger() {

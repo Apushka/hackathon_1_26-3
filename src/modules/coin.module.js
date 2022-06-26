@@ -1,5 +1,7 @@
 import {Module} from '../core/module'
-import {blockContext, handleContext, random, unblockContext} from '../utils'
+import {blockContext, random, unblockContext} from '../utils'
+
+// by Вадим Юнусов
 
 export class Coin extends Module {
 

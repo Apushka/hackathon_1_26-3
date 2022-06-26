@@ -1,6 +1,8 @@
 import { Module } from "../core/module";
 import { random } from "../utils";
 
+// by Александр Пушкин
+ 
 export class RandomMessage extends Module {
 
     async trigger() {

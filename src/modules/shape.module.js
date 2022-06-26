@@ -1,6 +1,8 @@
 import { Module } from '../core/module';
 import { random } from '../utils';
 
+// by Дмитрий Капран
+
 export class Shape extends Module {
 
   trigger() {

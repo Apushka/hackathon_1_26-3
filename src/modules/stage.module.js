@@ -11,6 +11,8 @@ import hhat from '../assets/drums/sounds/hhat.mp3';
 import ride from '../assets/drums/sounds/ride.mp3';
 import crash from '../assets/drums/sounds/crash.mp3';
 
+// by Александр Пушкин
+
 export class Stage extends Module {
 
     trigger() {

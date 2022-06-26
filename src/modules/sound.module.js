@@ -2,6 +2,8 @@ import { Module } from "../core/module";
 import { blockContext, getRandomSound, unblockContext } from "../utils";
 import speakerImg from '../assets/sounds/speaker.png';
 
+// by Александр Пушкин
+
 export class RandomSound extends Module {
 
     trigger() {

@@ -9,6 +9,8 @@ import { RandomSound } from "./sound.module";
 import { Stage } from "./stage.module";
 import { Timer } from "./timer.module";
 
+// by Евгений Сологуб
+
 export class App {
 	#mainpage;
 

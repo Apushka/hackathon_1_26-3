@@ -1,6 +1,8 @@
 import { Module } from '../core/module'
 import { blockContext, unblockContext } from '../utils';
 
+// by Вадим Юнусов
+
 export class Timer extends Module {
 
     trigger() {
