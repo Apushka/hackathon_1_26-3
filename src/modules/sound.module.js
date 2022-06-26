@@ -1,10 +1,12 @@
 import { Module } from "../core/module";
-import { getRandomSound, handleContext } from "../utils";
+import { blockContext, getRandomSound, unblockContext } from "../utils";
 import speakerImg from '../assets/sounds/speaker.png';
 
 export class RandomSound extends Module {
 
     trigger() {
+        blockContext();
+
         const speakerLeft = document.createElement('img');
         speakerLeft.src = speakerImg;
         speakerLeft.classList.add('speaker', 'speaker-left');
@@ -30,10 +32,9 @@ export class RandomSound extends Module {
             sound.onended = () => {
                 speakerLeft.style.left = '-100%';
                 speakerRight.style.right = '-100%';
-                document.body.removeEventListener('contextmenu', handleContext, true);
+                unblockContext();
             }
         })
 
-        document.body.addEventListener('contextmenu', handleContext, true);
     }
 }

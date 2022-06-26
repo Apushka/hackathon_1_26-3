@@ -47,13 +47,21 @@ export function createArea() {
 	return outer;
 }
 
-export function handleContext(e) {
+export function blockContext() {
+	document.body.addEventListener('contextmenu', handleContext, true);
+}
+
+export function unblockContext() {
+	document.body.removeEventListener('contextmenu', handleContext, true);
+}
+
+function handleContext(e) {
 	e.stopPropagation()
 }
 
 export function closeGame() {
 	document.querySelector('.doublegame-outer').remove();
-	document.body.removeEventListener('contextmenu', handleContext, true);
+	unblockContext();
 }
 
 export function createCover() {
