@@ -244,3 +244,20 @@ body {
 	color: #ebebeb;
 	text-shadow: var(--text-shadow);
 }
+
+/* random sound styles */
+.speaker {
+	width: 300px;
+	position: absolute;
+	top: 20%;
+	transition: all ease-in-out 0.3s;
+}
+
+.speaker-left {
+	left: -100%;
+	transform: scaleX(-1);
+}
+
+.speaker-right {
+	right: -100%;
+}

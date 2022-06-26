@@ -1,7 +1,7 @@
 import {Module} from '../core/module'
 import {handleContext, random} from '../utils'
 
-export class CoinModule extends Module {
+export class Coin extends Module {
 
     trigger() {
         const coinContainer = document.createElement('div');

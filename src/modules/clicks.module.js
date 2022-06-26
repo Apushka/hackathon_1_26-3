@@ -1,6 +1,6 @@
 import {Module} from '../core/module'
 
-export class ClicksModule extends Module {
+export class Clicks extends Module {
 
     trigger() {
         const viewTimer = document.createElement('div');

@@ -1,3 +1,6 @@
+import { images } from "./data";
+import { sounds } from "./data";
+
 export function random(min, max) {
 	return Math.round(min - 0.5 + Math.random() * (max - min + 1))
 };
@@ -12,25 +15,6 @@ export function getRandomColor(min, max) {
 
 	return color;
 }
-
-const images = [
-	'https://i.yapx.ru/SiACQ.jpg',
-	'https://i.yapx.ru/SiACZ.jpg',
-	'https://i.yapx.ru/SiACT.jpg',
-	'https://i.yapx.ru/SiACL.jpg',
-	'https://i.yapx.ru/SiACX.jpg',
-	'https://i.yapx.ru/SiACJ.jpg',
-	'https://i.yapx.ru/SiACL.jpg',
-	'https://i.yapx.ru/SiACV.jpg',
-	'https://i.yapx.ru/SiACO.jpg',
-	'https://i.yapx.ru/SiACX.jpg',
-	'https://i.yapx.ru/SiACZ.jpg',
-	'https://i.yapx.ru/SiACJ.jpg',
-	'https://i.yapx.ru/SiACO.jpg',
-	'https://i.yapx.ru/SiACQ.jpg',
-	'https://i.yapx.ru/SiACV.jpg',
-	'https://i.yapx.ru/SiACT.jpg',
-]
 
 const orders = [4, 1, 7, 2, 8, 3, 2, 6, 5, 8, 1, 3, 5, 4, 6, 7];
 
@@ -86,3 +70,9 @@ export function congratulation(outer) {
 	congratulationHTML.textContent = 'Поздравляю с победой!!!'
 	outer.prepend(congratulationHTML);
 }
+
+export function getRandomSound() {
+	const soundUrl = sounds[random(0, sounds.length - 1)];
+	return soundUrl;
+}
+

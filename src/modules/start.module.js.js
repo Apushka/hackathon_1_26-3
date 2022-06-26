@@ -1,11 +1,12 @@
 import { ContextMenu } from "../menu";
-import { BackgroundModule } from "./background.module";
-import { ClicksModule } from "./clicks.module";
-import { CoinModule } from "./coin.module";
+import { Background } from "./background.module";
+import { Clicks } from "./clicks.module";
+import { Coin } from "./coin.module";
 import { DoubleGame } from "./double.module";
 import { RandomMessage } from "./message.module";
 import { ShapeModule } from "./shape.module";
-import { StageModule } from "./stage.module";
+import { RandomSound } from "./sound.module";
+import { Stage } from "./stage.module";
 
 export class App {
 	#mainpage;
@@ -24,12 +25,13 @@ export class App {
 
 	start() {
 		const contextMenu = new ContextMenu('.menu');
-		contextMenu.add(new ClicksModule('clicks', 'Клик на скорость'));
-		contextMenu.add(new StageModule('stage', 'Время поиграть'));
-		contextMenu.add(new BackgroundModule('background', 'Изменить цвет'));
+		contextMenu.add(new Clicks('clicks', 'Клик на скорость'));
+		contextMenu.add(new Stage('stage', 'Время поиграть'));
+		contextMenu.add(new Background('background', 'Изменить цвет'));
 		contextMenu.add(new DoubleGame('doublegame', 'Игра "Найди пару"'));
-		contextMenu.add(new CoinModule('coin', 'Орёл или Решка'));
+		contextMenu.add(new Coin('coin', 'Орёл или Решка'));
 		contextMenu.add(new RandomMessage('message', 'Получить сообщение'));
 		contextMenu.add(new ShapeModule('shape', 'Создать фигуру'));
+		contextMenu.add(new RandomSound('sound', 'Рандомный звук'));
 	}
 }
