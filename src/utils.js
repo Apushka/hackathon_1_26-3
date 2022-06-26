@@ -1,5 +1,4 @@
-import { images } from "./data";
-import { sounds } from "./data";
+import { images, orders, sounds } from "./data";
 
 export function random(min, max) {
 	return Math.round(min - 0.5 + Math.random() * (max - min + 1))
@@ -30,8 +29,6 @@ export function getMenuPosition(element, event) {
 		? window.innerHeight - menuHeight + 'px'
 		: clientY + 'px';
 }
-
-const orders = [4, 1, 7, 2, 8, 3, 2, 6, 5, 8, 1, 3, 5, 4, 6, 7];
 
 export function createArea() {
 	const outer = document.createElement('div');

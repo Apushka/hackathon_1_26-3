@@ -30,3 +30,5 @@ export const sounds = [
 	'https://d7d3471nr939s.cloudfront.net/ArtificialIntelligence_Noiiz/MP3/One+Shots/FX/Fm_UnderTheSurfaceFX_01_679.mp3?cb=48e9c32e-26ba-450c-b076-f4986257ee86',
 	'https://d7d3471nr939s.cloudfront.net/PlasticDrums_Noiiz/MP3/One+Shots/Factory+Kit/PlasticCrackSnare_02_631.mp3?cb=ca085e64-697a-4dc4-ae5a-2333b467b69d',
 ];
+
+export const orders = [4, 1, 7, 2, 8, 3, 2, 6, 5, 8, 1, 3, 5, 4, 6, 7];
