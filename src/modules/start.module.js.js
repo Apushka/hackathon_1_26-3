@@ -14,7 +14,7 @@ export class App {
 		this.#mainpage = document.createElement('div');
 		this.#mainpage.className = 'main-page';
 		document.body.append(this.#mainpage);
-		this.#mainpage.textContent = 'Насладился фоном? Тогда жамкай на правую кнопку мыши! Там тебя ждут сюрпризы!!!'
+		this.#mainpage.innerHTML = 'Насладился фоном?<br> Тогда жамкай на правую кнопку мыши!<br> Там тебя ждут сюрпризы!!!'
 		document.body.addEventListener('contextmenu', () => {
 			this.#mainpage.textContent = '';
 		}, {
